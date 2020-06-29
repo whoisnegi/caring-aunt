@@ -5,6 +5,11 @@ const control = {
 
     create: async (req, res) => {
 
+        const menst = await Menstrual.findOne({ owner: req.user._id })
+        if (menst) {
+            return res.json({ Error: 'Menstrual data already created' })
+        }
+
         const date = req.body.pastPeriodDate;
         const length = req.body.menstrualCycleLength;
         req.body.notifyDate = createNotifyDate(date, length);
@@ -84,15 +89,15 @@ const control = {
 
         try {
             const menstDtl = await Task.findOneAndDelete({ owner: req.user._id });
-            if (!menstDtl) {
-                return res.status(404).send();
-            }
+            // if (!menstDtl) {
+            //     return res.status(404).send();
+            // }
             res.json({
                 'Menstrual Detail': menstDtl,
                 Result: "Successfully Deleted"
             });
         } catch (err) {
-            res.status(500).json({error: 'Server Error'});
+            res.status(404).json({error: 'Not Found'});
         }
     },
 

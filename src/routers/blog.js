@@ -1,5 +1,5 @@
 import express from 'express';
-import { blogs, includeBlog1, includeBlog2, includeBlog3 } from '../controllers/blogController';
+import { blogs, includeBlog1, includeBlog2, includeBlog3 } from '../controllers/blogcontroller';
 const router = express.Router();
 
 /* 

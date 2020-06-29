@@ -4,7 +4,7 @@ import { sendWelcomeEmail, sendCancellationEmail } from '../utils/email';
 const control = {
 
     signup: async (req, res) => {
-
+        
         try {
             const user = new User(req.body);
             let emailExists = await User.findOne({ email: user.email });
@@ -13,7 +13,7 @@ const control = {
                     error: 'An account with that email address already exists. Please login to continue.'
                 });
             }
-
+            
             await user.save();
             sendWelcomeEmail(user.email, user.name);
 
@@ -39,7 +39,7 @@ const control = {
                 Result: 'Login Success'
             });
         } catch (e) {
-            res.status(400).send(e);
+            res.status(400).send(`${e}`);
         }
     },
 

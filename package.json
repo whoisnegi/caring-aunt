@@ -6,7 +6,7 @@
     "test": "babel-watch ./src/app",
     "start": "npm run build && node ./dist/app",
     "build": "npm run clean && npm run babel-build",
-    "babel-build": "babel -d ./dist ./src -s",
+    "babel-build": "babel -d ./dist ./src -s --copy-files",
     "clean": "rimraf ./dist && mkdir dist"
   },
   "engines": {
@@ -23,6 +23,7 @@
     "@babel/preset-env": "^7.10.3",
     "@babel/runtime": "^7.10.3",
     "bcrypt": "^5.0.0",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.3",
     "express": "^4.17.1",
     "express-validator": "^6.6.0",
@@ -38,7 +39,6 @@
   },
   "devDependencies": {
     "babel-watch": "^7.0.0",
-    "dotenv": "^8.2.0",
     "nodemon": "^2.0.4"
   }
 }
